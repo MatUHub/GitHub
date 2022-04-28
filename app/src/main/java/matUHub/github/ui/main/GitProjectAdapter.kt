@@ -1,15 +1,15 @@
-package matUHub.github.ui
+package matUHub.github.ui.main
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
 import androidx.recyclerview.widget.RecyclerView
 import matUHub.github.databinding.GitItemBinding
 import matUHub.github.domain.GitProjectEntity
-import matUHub.github.ui.GitProjectAdapter.*
+import matUHub.github.ui.main.GitProjectAdapter.*
 
 class GitProjectAdapter : RecyclerView.Adapter<GitViewHolder>() {
+
+    var onItemClick: ((GitProjectEntity) -> Unit)? = null
 
     private var data: List<GitProjectEntity> = mutableListOf()
 
@@ -24,6 +24,10 @@ class GitProjectAdapter : RecyclerView.Adapter<GitViewHolder>() {
 
     override fun onBindViewHolder(holder: GitViewHolder, position: Int) {
         holder.bind(getItem(position))
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(getItem(position))
+        }
     }
 
     override fun getItemCount(): Int = data.size
@@ -43,8 +47,9 @@ class GitProjectAdapter : RecyclerView.Adapter<GitViewHolder>() {
         }
 
         fun bind(item: GitProjectEntity) {
-binding.itemId.text = item.id.toString()
-            binding.itemName.text = item.name
+            binding.itemImageView.setImageResource(item.image)
+            binding.itemIdTextView.text = item.id.toString()
+            binding.itemNameTextView.text = item.name
         }
     }
 }
