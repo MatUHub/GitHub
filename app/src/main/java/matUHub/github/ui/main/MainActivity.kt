@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         iniView()
-        /*initViewEvents()*/
         initViewModelEvents()
         viewModel.showRepos()
 
@@ -44,10 +43,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*private fun  initViewEvents(){
-        binding.showButton.setOnClickListener{
-            val username = binding.searchEditText.text.toString()
-            viewModel.onShowRepos(username)
-        }
-    }*/
+
 }
