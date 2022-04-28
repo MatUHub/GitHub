@@ -18,7 +18,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val user = intent.getParcelableExtra<GitProjectEntity>("user")
-        if(user != null){
+        if (user != null) {
             val idUser: TextView = binding.itemIdTextView
             val nameUser: TextView = binding.itemNameTextView
             val imageUser: ImageView = binding.itemImageView
