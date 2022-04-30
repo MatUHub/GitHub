@@ -14,13 +14,13 @@ class MainViewModel(private val gitProjectsRepo: ProjectsRepo) : ViewModel() {
     val repos: LiveData<List<GitProjectEntity>> = _repos
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    fun onShowRepos(userName: String) {
+    /*fun onShowRepos(userName: String) {
         compositeDisposable.add(
             gitProjectsRepo.observeReposForUser(userName).subscribeBy {
                 _repos.postValue(it)
             }
         )
-    }
+    }*/
 
     fun showRepos(){
         compositeDisposable.add(

@@ -7,19 +7,19 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitProjectsRepoImpl : ProjectsRepo {
 
-
     private val retrofit = Retrofit.Builder()
         .baseUrl("http://api.github.com")
+        .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     private val api: GitHubApi = retrofit.create(GitHubApi::class.java)
 
 
-    override fun observeReposForUser(username: String): Single<List<GitProjectEntity>> {
-
+    /*override fun observeReposForUser(username: String): Single<List<GitProjectEntity>> {
         return Single.create { emitter ->
             api.listRepos(username)
                 .enqueue(object : Callback<List<GitProjectEntity>> {
@@ -35,12 +35,12 @@ class RetrofitProjectsRepoImpl : ProjectsRepo {
                     }
                 })
         }
-    }
+    }*/
 
 
 override fun getRepoUsers(): Single<List<GitProjectEntity>> {
     return Single.create { emitter ->
-        api.listRepos("octocat")
+        api.listRepos("MatUHab")
             .enqueue(object : Callback<List<GitProjectEntity>> {
                 override fun onResponse(
                     call: Call<List<GitProjectEntity>>,
@@ -49,9 +49,10 @@ override fun getRepoUsers(): Single<List<GitProjectEntity>> {
                     emitter.onSuccess(response.body())
                 }
 
-                override fun onFailure(call: Call<List<GitProjectEntity>>, t: Throwable) {
+                override fun onFailure(call: Call<List<GitProjectEntity>>, t: Throwable){
                     emitter.onError(t)
                 }
+
             })
     }
 }

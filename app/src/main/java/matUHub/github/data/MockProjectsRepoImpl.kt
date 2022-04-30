@@ -6,7 +6,7 @@ import matUHub.github.domain.GitProjectEntity
 import matUHub.github.domain.ProjectsRepo
 
 class MockProjectsRepoImpl: ProjectsRepo {
-    override fun observeReposForUser(username: String): Single<List<GitProjectEntity>> {
+   /* override fun observeReposForUser(username: String): Single<List<GitProjectEntity>> {
         val dummyList = listOf(
             GitProjectEntity(1, "a", R.drawable.ic_item),
             GitProjectEntity(2, "б", R.drawable.ic_item),
@@ -14,7 +14,7 @@ class MockProjectsRepoImpl: ProjectsRepo {
             GitProjectEntity(4, "г", R.drawable.ic_item),
         )
         return Single.just(dummyList)
-    }
+    }*/
 
     override fun getRepoUsers(): Single<List<GitProjectEntity>> {
         val dummyList = listOf(
